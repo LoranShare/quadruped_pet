@@ -91,42 +91,51 @@ else
 endif
 
 
-########### Build info ########################################################
+.PHONY: help
+help:
+	@echo "Usage: make [target] [option]"
+	@echo "Target list:"
+	@echo "     help    displays this message"
+	@echo "     all     builds the project, the output is a binary file and elf"
+	@echo "Options list"
+	@echo "     EN_PREPROCESSOR_OUT=1   Allows you to save the output preprocessing step"
+	@echo "     DEBUG_ENABLED=1         Turns on output of debugging information (-g flag)"
 
-$(info -----------------------)
-$(info Build info)
-$(info Compilator: $(CC))
-$(info Compilator flags: $(CFLAGS))
-$(info Linker flags: $(LDFLAGS))
-$(info Include paths: $(APP_INCLUDE_PATH))
-$(info Source files: $(SOURCES))
-$(info -----------------------)
-
-
-########### Debug info ########################################################
-
-$(info Debug info)
-$(info OBJS: $(OBJS))
-$(info SOURCES_DIR: $(SOURCES_DIR))
-$(info Source files: $(SOURCES))
-ifdef EN_PREPROCESSOR_OUT
-$(info Preprocessed files: $(PREPROC_OBJS))
-endif
-$(info -----------------------)
-
-
-########### Make targets ######################################################
 
 .PHONY: all
-all: make_dir $(PROGRAMM_NAME)
-	@echo "#*****************************************"
-	@echo -n "# Size of ${ELF} in bytes is: ${size} " & stat -L -c %s ${BIN}
+all: print make_dir $(PROGRAMM_NAME)
+	@$(SIZE) $(ELF)
+	@echo "#*****************************************************"
+	@echo -n "# Size of ${BIN} in bytes is: ${size} " & stat -L -c %s ${BIN}
 	@echo -n "# Size of ${ELF} in bytes is: ${size} " & stat -L -c %s ${ELF}
-	@echo "#*****************************************"
-	$(SIZE) $(ELF)
+	@echo "#*****************************************************"
 
 
-$(PROGRAMM_NAME) : $(BIN)
+
+print :
+	$(info -----------------------)
+	$(info Build info)
+	$(info Compilator: $(CC))
+	$(info Compilator flags: $(CFLAGS))
+	$(info Linker flags: $(LDFLAGS))
+	$(info Include paths: $(APP_INCLUDE_PATH))
+	$(info Source files: $(SOURCES))
+	$(info -----------------------)
+
+	$(info Debug info)
+	$(info OBJS: $(OBJS))
+	$(info SOURCES_DIR: $(SOURCES_DIR))
+	$(info Source files: $(SOURCES))
+	@if [ -z "${EN_PREPROCESSOR_OUT}" ]; then \
+        echo "-----------------------"; \
+	else \
+		echo "Preprocessed files: $(PREPROC_OBJS)"; \
+		echo "-----------------------"; \
+	fi;
+# 	$(info -----------------------)
+
+
+$(PROGRAMM_NAME) : $(OPT_TARGETS) $(BIN)
 	@echo "Сompilation was successful"
 
 

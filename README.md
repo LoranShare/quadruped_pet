@@ -16,7 +16,19 @@ The control unit is implemented on the basis of the **Blue Pill** evaluation boa
 
 
 ## Software
+### Prerequisites
+ * Make
+ * Arm GNU Toolchain
+
 ### Building
+The project is built from the root directory using the *make* command. To request usage, call the command:
+```bash
+make help
+```
+For example, to build a project, call:
+```bash
+make all
+```
 
 ### Installing
 
