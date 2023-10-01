@@ -34,6 +34,7 @@ OPT_TARGETS         =
 EN_PREPROCESSOR_OUT ?=
 LDFLAGS             := -T $(LD_SCRIPT_PATH)
 LDFLAGS             += -Wl,-Map=$(OUTPUT_DIR)/$(PROGRAMM_NAME).map,--gc-sections,--cref
+LDFLAGS             += -mcpu=cortex-m3 -mthumb
 
 CFLAGS              := -Wall -Werror -Wunused
 CFLAGS              += -std=c11
@@ -42,7 +43,7 @@ CFLAGS              += -std=c11
 # Target specific
 CFLAGS              += -mcpu=cortex-m3
 CFLAGS              += -mthumb
-# CFLAGS              += -print-multi-lib
+# CFLAGS              += -print-multi-dir
 
 
 ifeq ($(OPT), O2)
