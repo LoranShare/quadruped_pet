@@ -16,7 +16,7 @@ OPT                 ?=
 # Location of source file directories
 LD_SCRIPT_PATH      := scripts/ld/STM32F103XB_FLASH.ld
 STARTUP_SOURCE_PATH := Submodules/cmsis_device_f1/Source/Templates/gcc/startup_stm32f103xb.s
-APP_SOURCE_PATH     := Submodules/cmsis_device_f1/Source/Templates
+APP_SOURCE_PATH     := Src/cmsis_device_f1/
 APP_SOURCE_PATH     += Src/
 
 
