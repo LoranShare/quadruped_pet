@@ -35,9 +35,21 @@
     - -:test/support
   :source:
     - src/**
+    - ../../Src/*
+    - ../../Inc/*
   :support:
     - test/support
   :libraries: []
+
+:flags:
+  :release:
+    :compile:
+      :*:
+        - -Wall
+  :test:
+    :compile:
+      :*:
+        - -Wall
 
 :defines:
   # in order to add common defines:
@@ -89,7 +101,7 @@
   :flag: "-l${1}"
   :path_flag: "-L ${1}"
   :system: []    # for example, you might list 'm' to grab the math library
-  :test: []
+  :test: [m]
   :release: []
 
 :plugins:
