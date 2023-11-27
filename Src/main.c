@@ -9,27 +9,22 @@
 /* Includes ------------------------------------------------------------------*/
 #include "stm32f1xx.h"
 
-
 /* Private function prototypes -----------------------------------------------*/
 static void initializeMCO(void);
 
-
 /* Private functions ---------------------------------------------------------*/
 int main(void) {
+    /* Variable declaration */
 
-	/* Variable declaration */
+    /* MCO Initialization */
+    initializeMCO();
 
-	/* MCO Initialization */
-	initializeMCO();
+    /* Main loop */
+    while (1) {
+    }
 
-	/* Main loop */
-	while(1) {
-
-	}
-
-	return 0;
+    return 0;
 }
-
 
 /**
  * @brief       MCO Output Initialization
@@ -40,14 +35,13 @@ int main(void) {
  */
 
 void initializeMCO(void) {
+    /* Select clock to output */
+    MODIFY_REG(RCC->CFGR, RCC_CFGR_MCO_Msk, RCC_CFGR_MCO_SYSCLK);
 
-	/* Select clock to output */
-	MODIFY_REG(RCC->CFGR, RCC_CFGR_MCO_Msk, RCC_CFGR_MCO_SYSCLK);
+    /* Enable RCC */
+    SET_BIT(RCC->APB2ENR, RCC_APB2ENR_IOPAEN);
 
-	/* Enable RCC */
-	SET_BIT(RCC->APB2ENR, RCC_APB2ENR_IOPAEN);
-
-	/* Enable AF for MCO */
-	MODIFY_REG(GPIOA->CRH, GPIO_CRH_MODE8_Msk, GPIO_CRH_MODE8_0 | GPIO_CRH_MODE8_1);
-	MODIFY_REG(GPIOA->CRH, GPIO_CRH_CNF8_Msk, GPIO_CRH_CNF8_1);
+    /* Enable AF for MCO */
+    MODIFY_REG(GPIOA->CRH, GPIO_CRH_MODE8_Msk, GPIO_CRH_MODE8_0 | GPIO_CRH_MODE8_1);
+    MODIFY_REG(GPIOA->CRH, GPIO_CRH_CNF8_Msk, GPIO_CRH_CNF8_1);
 }

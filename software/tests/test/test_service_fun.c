@@ -7,25 +7,23 @@
  */
 
 /* Includes ------------------------------------------------------------------*/
-#include "unity.h"
-#include <time.h>
-#include <stdlib.h>
-#include <math.h>
 #include <float.h>
+#include <math.h>
+#include <stdlib.h>
 #include <string.h>
+#include <time.h>
+
 #include "leg_driver.h"
 #include "service_fun.h"
-
+#include "unity.h"
 
 /* Private define ------------------------------------------------------------*/
-#define MAX_LEN                 ( 20.0f             )
-#define NUMBER_OF_POINT         ( 1000              )
-
+#define MAX_LEN (20.0f)
+#define NUMBER_OF_POINT (1000)
 
 /* Private variables ---------------------------------------------------------*/
 float g_coxa_len;
 float g_femur_len;
-
 
 /* Private functions ---------------------------------------------------------*/
 void setUp(void) {
@@ -34,9 +32,7 @@ void setUp(void) {
     g_coxa_len = getRandomFloat(0, MAX_LEN, false);
 }
 
-void tearDown(void) {
-}
-
+void tearDown(void) {}
 
 /**
  * @brief       Сhecking to handle null pointer
@@ -47,20 +43,18 @@ void tearDown(void) {
  */
 
 void test_null_pointer(void) {
-
-	/* Variable declaration */
-	bool status;
-    float angle_c = getRandomFloat(0 , 180, true);
-    float angle_f = getRandomFloat(0 , 360, true);
+    /* Variable declaration */
+    bool status;
+    float angle_c = getRandomFloat(0, 180, true);
+    float angle_f = getRandomFloat(0, 360, true);
     point_t point = {.x = 0, .y = 0};
 
-	status = calculatePoint(g_femur_len, g_coxa_len, angle_f, angle_c, NULL);
-	TEST_ASSERT_FALSE(status);
+    status = calculatePoint(g_femur_len, g_coxa_len, angle_f, angle_c, NULL);
+    TEST_ASSERT_FALSE(status);
 
-	status = calculatePoint(g_femur_len, g_coxa_len, angle_f, angle_c, &point);
-	TEST_ASSERT_TRUE(status);
+    status = calculatePoint(g_femur_len, g_coxa_len, angle_f, angle_c, &point);
+    TEST_ASSERT_TRUE(status);
 }
-
 
 /**
  * @brief       Testing points along the x axis
@@ -71,9 +65,8 @@ void test_null_pointer(void) {
  */
 
 void test_points_along_x(void) {
-
-	/* Variable declaration */
-	bool status;
+    /* Variable declaration */
+    bool status;
     float angle_c;
     float angle_f;
     point_t point;
@@ -119,7 +112,6 @@ void test_points_along_x(void) {
     TEST_ASSERT_FLOAT_WITHIN_MESSAGE(0.001, 0, point.y, mess_string);
 }
 
-
 /**
  * @brief       Testing points along the y axis
  *
@@ -129,9 +121,8 @@ void test_points_along_x(void) {
  */
 
 void test_points_along_y(void) {
-
-	/* Variable declaration */
-	bool status;
+    /* Variable declaration */
+    bool status;
     float angle_c;
     float angle_f;
     point_t point;

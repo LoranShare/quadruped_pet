@@ -10,11 +10,10 @@
 #ifndef __SERVICE_FUN_H__
 #define __SERVICE_FUN_H__
 
-
 /* Includes ------------------------------------------------------------------*/
 #include <stdbool.h>
-#include "leg_driver.h"
 
+#include "leg_driver.h"
 
 /* Exported functions ------------------------------------------------------- */
 /**
@@ -28,7 +27,6 @@
  */
 
 float getRandomFloat(float min, float max, bool is_include);
-
 
 /**
  * @brief       Solving the problem of direct kinematics,
@@ -47,7 +45,6 @@ float getRandomFloat(float min, float max, bool is_include);
  */
 
 bool calculatePoint(float femur_len, float coxa_len, float angle_femur, float angle_coxa, point_t *point);
-
 
 /**
  * @brief       Calculate the intersection point of a circles

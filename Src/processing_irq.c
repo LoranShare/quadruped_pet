@@ -11,10 +11,8 @@
 /* Includes ------------------------------------------------------------------*/
 #include "processing_irq.h"
 
-
 /* Private variables ---------------------------------------------------------*/
 static volatile uint32_t ticks_ms = 0;
-
 
 /* Private functions ---------------------------------------------------------*/
 /**
@@ -24,11 +22,6 @@ static volatile uint32_t ticks_ms = 0;
  *              when interrupted, the counter increases
  */
 
-__attribute__ ((interrupt ("IRQ"))) void SysTick_Handler(void) {
-    ++ticks_ms;
-}
+__attribute__((interrupt("IRQ"))) void SysTick_Handler(void) { ++ticks_ms; }
 
-
-uint32_t getTick(void) {
-    return ticks_ms;
-}
+uint32_t getTick(void) { return ticks_ms; }

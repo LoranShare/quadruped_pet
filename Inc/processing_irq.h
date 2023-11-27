@@ -10,10 +10,8 @@
 #ifndef __PROCESSING_IRQ_H__
 #define __PROCESSING_IRQ_H__
 
-
 /* Includes ------------------------------------------------------------------*/
 #include <stdint.h>
-
 
 /* Exported functions ------------------------------------------------------- */
 /**
@@ -26,6 +24,5 @@
  */
 
 uint32_t getTick(void);
-
 
 #endif /* __PROCESSING_IRQ_H__ */

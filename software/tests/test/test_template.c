@@ -9,14 +9,9 @@
 /* Includes ------------------------------------------------------------------*/
 #include "unity.h"
 
-
 /* Private functions ---------------------------------------------------------*/
-void setUp(void) {
-}
+void setUp(void) {}
 
-void tearDown(void) {
-}
+void tearDown(void) {}
 
-void test_template(void) {
-
-}
+void test_template(void) {}

@@ -7,11 +7,12 @@
  */
 
 /* Includes ------------------------------------------------------------------*/
-#include <float.h>
-#include <stdlib.h>
-#include <stdio.h>
 #include "service_fun.h"
+
+#include <float.h>
 #include <math.h>
+#include <stdio.h>
+#include <stdlib.h>
 
 /* Private functions ---------------------------------------------------------*/
 
@@ -19,7 +20,7 @@ float getRandomFloat(float min, float max, bool is_include) {
     float random;
     float range;
 
-    if(min > max) {
+    if (min > max) {
         float temp = min;
         min = max;
         max = temp;
@@ -28,7 +29,7 @@ float getRandomFloat(float min, float max, bool is_include) {
     range = max - min;
     random = (float)rand() / RAND_MAX;
 
-    if(is_include) {
+    if (is_include) {
         range -= FLT_EPSILON;
         min += FLT_EPSILON;
     }
@@ -37,23 +38,21 @@ float getRandomFloat(float min, float max, bool is_include) {
     return random;
 }
 
-
 bool calculateAngle(float r1, float r2, const point_t *const point, point_t *intersec_point) {
-
     bool status = false;
     float distance, b_len, h;
     float temp;
     point_t temp_point;
 
     /* Checking input arguments */
-    if(!point || !intersec_point) {
+    if (!point || !intersec_point) {
         return status;
     }
 
     /* Checking reachability point */
     distance = pow(point->x, 2) + pow(point->y, 2);
     distance = sqrt(distance);
-    if(distance > (r1 + r2) || distance < abs(r1 - r2)) {
+    if (distance > (r1 + r2) || distance < abs(r1 - r2)) {
         return status;
     }
 
@@ -99,14 +98,12 @@ bool calculateAngle(float r1, float r2, const point_t *const point, point_t *int
     return true;
 }
 
-
 bool calculatePoint(float femur_len, float coxa_len, float angle_f, float angle_c, point_t *const point) {
-
     point_t point_b;
     float angle_temp;
     float radian;
 
-    if(!point || (angle_c > 180.00)) {
+    if (!point || (angle_c > 180.00)) {
         return false;
     }
 

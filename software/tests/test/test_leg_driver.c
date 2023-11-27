@@ -7,25 +7,23 @@
  */
 
 /* Includes ------------------------------------------------------------------*/
-#include "unity.h"
-#include <time.h>
-#include <stdlib.h>
-#include <math.h>
 #include <float.h>
+#include <math.h>
+#include <stdlib.h>
 #include <string.h>
+#include <time.h>
+
 #include "leg_driver.h"
 #include "service_fun.h"
-
+#include "unity.h"
 
 /* Private define ------------------------------------------------------------*/
-#define MAX_LEN                 ( 20.0f             )
-#define NUMBER_OF_POINT         ( 1000              )
-
+#define MAX_LEN (20.0f)
+#define NUMBER_OF_POINT (1000)
 
 /* Private variables ---------------------------------------------------------*/
 float g_coxa_len;
 float g_femur_len;
-
 
 /* Private functions ---------------------------------------------------------*/
 void setUp(void) {
@@ -34,9 +32,7 @@ void setUp(void) {
     g_coxa_len = getRandomFloat(0, MAX_LEN, false);
 }
 
-void tearDown(void) {
-}
-
+void tearDown(void) {}
 
 /**
  * @brief       Сhecking driver methods to handle null pointer
@@ -47,7 +43,6 @@ void tearDown(void) {
  */
 
 void test_null_pointer(void) {
-
     /* Variable declaration */
     legStatus_t status;
     leg_t leg;
@@ -74,7 +69,6 @@ void test_null_pointer(void) {
     TEST_ASSERT_EQUAL_INT(status, LEG_STATUS_BAD_PTR);
 }
 
-
 /**
  * @brief       Сhecking for invalid points
  *
@@ -84,7 +78,6 @@ void test_null_pointer(void) {
  */
 
 void test_unreachable_points(void) {
-
     /* Variable declaration */
     legStatus_t status;
     leg_t leg;
@@ -103,7 +96,7 @@ void test_unreachable_points(void) {
     min_d = fabs(g_coxa_len + g_femur_len);
 
     for (int i = 1; i < NUMBER_OF_POINT; ++i) {
-        if(i >= NUMBER_OF_POINT / 2) {
+        if (i >= NUMBER_OF_POINT / 2) {
             sq_d = getRandomFloat(0, max_d, false);
         } else {
             sq_d = getRandomFloat(min_d, min_d * 20, false);
@@ -115,15 +108,15 @@ void test_unreachable_points(void) {
         sq_y = sqrt(sq_y);
         sq_x = sqrt(sq_x);
 
-        if(rand() % 2) {
+        if (rand() % 2) {
             sq_y = -sq_y;
         }
 
-        if(rand() % 2) {
+        if (rand() % 2) {
             sq_x = -sq_x;
         }
 
-        if(i == 0) {
+        if (i == 0) {
             point.x = 0.0f;
             point.y = 0.0f;
         } else {
@@ -138,7 +131,7 @@ void test_unreachable_points(void) {
 
         /* Radius check for test */
         float temp = pow(point.x, 2) + pow(point.y, 2);
-        if(i >= NUMBER_OF_POINT / 2) {
+        if (i >= NUMBER_OF_POINT / 2) {
             TEST_ASSERT_TRUE_MESSAGE(temp < pow(max_d, 2), mess_string);
         } else {
             TEST_ASSERT_TRUE_MESSAGE(temp > pow(min_d, 2), mess_string);
@@ -152,7 +145,6 @@ void test_unreachable_points(void) {
     }
 }
 
-
 /**
  * @brief       Сhecking for valid points
  *
@@ -162,7 +154,6 @@ void test_unreachable_points(void) {
  */
 
 void test_reachable_points(void) {
-
     /* Variable declaration */
     legStatus_t leg_status;
     leg_t leg;
@@ -177,7 +168,6 @@ void test_reachable_points(void) {
     TEST_ASSERT_EQUAL_INT(leg_status, LEG_STATUS_SUCCESS);
 
     for (int i = 0; i < NUMBER_OF_POINT; ++i) {
-
         /* Direct kinematic calculation */
         angle_coxa = getRandomFloat(0.0f, 180.0f, true);
         angle_femur = getRandomFloat(0.0f, 360.0f, true);
@@ -210,6 +200,5 @@ void test_reachable_points(void) {
         leg_status = getAngle(&leg, LIMB_FEMUR, &angle_temp);
         TEST_ASSERT_EQUAL_INT_MESSAGE(leg_status, LEG_STATUS_SUCCESS, mess_string);
         TEST_ASSERT_FLOAT_WITHIN_MESSAGE(0.001, angle_femur, angle_temp, mess_string);
-
     }
 }
