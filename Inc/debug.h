@@ -18,19 +18,24 @@
 
 #define PRNT_DEBUG(...)                \
     printf("[DEBUG][%s]: ", __func__); \
-    printf(__VA_ARGS__)
+    printf(__VA_ARGS__);               \
+    printf("\n")
 #define PRNT_INFO(...)                \
     printf("[INFO][%s]: ", __func__); \
-    printf(__VA_ARGS__)
+    printf(__VA_ARGS__);              \
+    printf("\n")
 #define PRNT_ERROR(...)                \
     printf("[ERROR][%s]: ", __func__); \
-    printf(__VA_ARGS__)
+    printf(__VA_ARGS__);               \
+    printf("\n")
 #define PRNT_WARNING(...)                \
     printf("[WARNING][%s]: ", __func__); \
-    printf(__VA_ARGS__)
+    printf(__VA_ARGS__);                 \
+    printf("\n")
 #define PRNT_STATS(...)                \
     printf("[STATS][%s]: ", __func__); \
-    printf(__VA_ARGS__)
+    printf(__VA_ARGS__);               \
+    printf("\n")
 
 #ifdef USE_ASSERT
 
