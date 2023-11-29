@@ -2,7 +2,7 @@
  *******************************************************************************
  * @file        leg_driver.h
  * @author      Gevorgyan Ovik
- * @brief       BRIEF <---------------------|       Put here brief of module "Header of "
+ * @brief       Header of leg_driver.c
  *******************************************************************************
  */
 
@@ -18,14 +18,19 @@
 typedef enum { LEG_STATUS_SUCCESS, LEG_STATUS_BAD_PTR, LEG_STATUS_BAG_ARG, LEG_STATUS_ERROR } legStatus_t;
 
 typedef struct {
-} leg_t;
-
-typedef enum { LIMB_COXA, LIMB_FEMUR } limb_t;
-
-typedef struct {
     float x;
     float y;
 } point_t;
+
+typedef struct {
+    float femur_len;    ///< Femur limb length in cm
+    float coxa_len;     ///< Coxa limb length in cm
+    float femur_angle;  ///< Femur angle in degrees [0:180]
+    float coxa_angle;   ///< Coxa angle in degrees [0:180]
+    point_t point;
+} leg_t;
+
+typedef enum { LIMB_COXA, LIMB_FEMUR } limb_t;
 
 /* Exported macro ------------------------------------------------------------*/
 /* Exported functions ------------------------------------------------------- */
