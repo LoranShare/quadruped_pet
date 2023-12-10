@@ -2,4 +2,4 @@ BasedOnStyle: Google
 InsertNewlineAtEOF: true
 Language: Cpp
 IndentWidth: 4
-ColumnLimit: 800
+ColumnLimit: 100
