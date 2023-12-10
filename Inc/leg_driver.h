@@ -15,7 +15,12 @@
 
 /* Exported constants --------------------------------------------------------*/
 /* Exported types ------------------------------------------------------------*/
-typedef enum { LEG_STATUS_SUCCESS, LEG_STATUS_BAD_PTR, LEG_STATUS_BAG_ARG, LEG_STATUS_ERROR } legStatus_t;
+typedef enum {
+    LEG_STATUS_SUCCESS,
+    LEG_STATUS_BAD_PTR,
+    LEG_STATUS_BAG_ARG,
+    LEG_STATUS_ERROR
+} legStatus_t;
 
 typedef struct {
     float x;

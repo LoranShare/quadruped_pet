@@ -16,6 +16,9 @@
 /* Private define ------------------------------------------------------------*/
 /* Private typedef -----------------------------------------------------------*/
 /* Private macro -------------------------------------------------------------*/
+#define IS_LEG_LIMB(LIMB) ((LIMB == LIMB_COXA) || (LIMB == LIMB_FEMUR))
+#define IS_LEG_LIMB_LEN
+
 /* Private variables ---------------------------------------------------------*/
 /* Private function prototypes -----------------------------------------------*/
 /* Private functions ---------------------------------------------------------*/
@@ -25,8 +28,8 @@ legStatus_t initLeg(leg_t *const leg, float coxa_len, float femur_len) {
         return LEG_STATUS_BAD_PTR;
     }
 
-    assert_param(IS_LEG_LIMB_LEN(coxa_len));
-    assert_param(IS_LEG_LIMB_LEN(femur_len));
+    // assert_param(IS_LEG_LIMB_LEN(coxa_len));
+    // assert_param(IS_LEG_LIMB_LEN(femur_len));
 
     memset(leg, 0, sizeof(*leg));
     leg->femur_len = femur_len;

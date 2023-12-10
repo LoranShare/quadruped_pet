@@ -13,6 +13,9 @@
 /* Includes ------------------------------------------------------------------*/
 #include <stdint.h>
 #include <stdio.h>
+#ifdef TEST
+#include "unity.h"
+#endif
 
 /* Exported macro ------------------------------------------------------------*/
 
@@ -47,10 +50,14 @@
  * @retval None
  */
 
+#ifndef TEST
 #define assert_param(expr) ((expr) ? (void)0 : assert_failed((uint8_t*)__FILE__, __LINE__))
-
 #else
+#define assert_param(expr) TEST_ASSERT_FALSE(expr)
+#endif
+#else /* TEST */
 #define assert_param(expr) ((void)0U)
+
 #endif /* USE_ASSERT */
 
 /* Exported functions ------------------------------------------------------- */
