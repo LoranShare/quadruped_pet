@@ -44,7 +44,8 @@ float getRandomFloat(float min, float max, bool is_include);
  * @return      Status of operation
  */
 
-bool calculatePoint(float femur_len, float coxa_len, float angle_femur, float angle_coxa, point_t *point);
+bool calculatePoint(float femur_len, float coxa_len, float angle_femur, float angle_coxa,
+                    point_t *point);
 
 /**
  * @brief       Calculate the intersection point of a circles

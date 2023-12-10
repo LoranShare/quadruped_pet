@@ -98,7 +98,8 @@ bool calculateAngle(float r1, float r2, const point_t *const point, point_t *int
     return true;
 }
 
-bool calculatePoint(float femur_len, float coxa_len, float angle_f, float angle_c, point_t *const point) {
+bool calculatePoint(float femur_len, float coxa_len, float angle_f, float angle_c,
+                    point_t *const point) {
     point_t point_b;
     float angle_temp;
     float radian;

@@ -59,6 +59,7 @@
   :test:
     # - *common_defines
     - TEST
+    - USE_ASSERT
   :test_preprocess:
     # - *common_defines
     - TEST

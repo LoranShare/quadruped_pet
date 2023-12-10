@@ -13,6 +13,7 @@
 #include <string.h>
 #include <time.h>
 
+#include "debug.h"
 #include "leg_driver.h"
 #include "service_fun.h"
 #include "unity.h"
@@ -39,7 +40,6 @@ void tearDown(void) {}
  *
  * @details     Methods where pointers are declared as arguments are supplied with NULL.
  *              The test is considered passed if an error is generated
- *
  */
 
 void test_null_pointer(void) {
@@ -67,6 +67,29 @@ void test_null_pointer(void) {
 
     status = getAngle(&leg, limb, NULL);
     TEST_ASSERT_EQUAL_INT(status, LEG_STATUS_BAD_PTR);
+}
+
+/**
+ * @brief       Сhecking driver methods to handle incorrect arguments
+ *
+ * @details
+ */
+
+void test_enums_param(void) {
+    /* Variable declaration */
+    legStatus_t status;
+    leg_t leg;
+    limb_t limb;
+    float float_val;
+
+    /* Driver initialization */
+    status = initLeg(&leg, g_coxa_len, g_femur_len);
+    TEST_ASSERT_EQUAL_INT(status, LEG_STATUS_SUCCESS);
+
+    /* Testing getAngle func */
+    limb = LIMB_FEMUR + 1 + rand() % 1000;
+    status = getAngle(&leg, limb, &float_val);
+    TEST_ASSERT_EQUAL_INT(status, LEG_STATUS_SUCCESS);
 }
 
 /**
